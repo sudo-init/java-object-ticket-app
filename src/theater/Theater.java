@@ -13,17 +13,15 @@ public class Theater {
     }
 
     public void enter(Audience audience) {
-
-        // 
-
-        if (audience.getBag().hasInvitation()) {
-            Ticket ticket = ticketSeller.getTicketOffice().getTicket();
-            audience.getBag().setTicket(ticket);
+        Ticket ticket;
+        // 초대장이 있으면 무료입장
+        if (audience.checkInvitation()) {
+            ticket = ticketSeller.exchangeTicket();
+            audience.receiveTicket(ticket);
             return;
         }
-        Ticket ticket = ticketSeller.getTicketOffice().getTicket();
-        audience.getBag().minusAmount(ticket.getFee());
-        ticketSeller.getTicketOffice().plusAmount(ticket.getFee());
-        audience.getBag().setTicket(ticket);
+        // 없으면 요금 받고 티켓 판매
+        ticket = ticketSeller.sellTicket();
+        audience.purchaseTicket (ticket);
     }
 }
