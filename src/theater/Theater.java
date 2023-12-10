@@ -13,17 +13,15 @@ public class Theater {
     }
 
     public void enter(Audience audience) {
-
-        // 
-
         if (audience.getBag().hasInvitation()) {
             Ticket ticket = ticketSeller.getTicketOffice().getTicket();
             audience.getBag().setTicket(ticket);
-            return;
+
+        } else {
+            Ticket ticket = ticketSeller.getTicketOffice().getTicket();
+            audience.getBag().minusAmount(ticket.getFee());
+            ticketSeller.getTicketOffice().plusAmount(ticket.getFee());
+            audience.getBag().setTicket(ticket);
         }
-        Ticket ticket = ticketSeller.getTicketOffice().getTicket();
-        audience.getBag().minusAmount(ticket.getFee());
-        ticketSeller.getTicketOffice().plusAmount(ticket.getFee());
-        audience.getBag().setTicket(ticket);
     }
 }
