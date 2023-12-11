@@ -1,6 +1,7 @@
 package audience;
 
 import bag.Bag;
+import ticket.Ticket;
 
 public class Audience {
 
@@ -12,5 +13,9 @@ public class Audience {
 
     public Bag getBag() {
         return bag;
+    }
+
+    public Long buy(Ticket ticket) {
+        return bag.hold(ticket);
     }
 }

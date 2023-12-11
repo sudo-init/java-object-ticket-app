@@ -1,5 +1,6 @@
 package ticketseller;
 
+import audience.Audience;
 import ticket.Ticket;
 import ticketoffice.TicketOffice;
 
@@ -13,5 +14,9 @@ public class TicketSeller {
 
     public TicketOffice getTicketOffice() {
         return ticketOffice;
+    }
+
+    public void sellTo(Audience audience) {
+        this.ticketOffice.sellTicketTo(audience);
     }
 }
